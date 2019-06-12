@@ -1,0 +1,59 @@
+# 注释为单节点服务发现配置
+#spring:
+#  application:
+#    name: ad-discovery-server
+#server:
+#  port: 8888
+#eureka:
+#  instance:
+#    hostname: localhost #单机版
+#  client:
+#    fetch-registry: false
+#    register-with-eureka: false #注册自己到eureka
+#    service-url:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/ad/discovery/
+
+---
+spring:
+  application:
+    name: ad-discovery
+  profiles: server1
+server:
+  port: 7777
+eureka:
+  instance:
+    hostname: server1
+    prefer-ip-address: false
+  client:
+    service-url:
+      defaultZone: http://server2:8888/eureka/,http://server3:9999/eureka/
+
+---
+spring:
+  application:
+    name: ad-discovery
+  profiles: server2
+server:
+  port: 8888
+eureka:
+  instance:
+    hostname: server2
+    prefer-ip-address: false
+  client:
+    service-url:
+      defaultZone: http://server1:7777/eureka/,http://server3:9999/eureka/
+
+---
+spring:
+  application:
+    name: ad-discovery
+  profiles: server3
+server:
+  port: 9999
+eureka:
+  instance:
+    hostname: server3
+    prefer-ip-address: false
+  client:
+    service-url:
+      defaultZone: http://server2:8888/eureka/,http://server1:7777/eureka/
