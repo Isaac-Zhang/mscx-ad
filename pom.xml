@@ -8,6 +8,7 @@
         <module>mscx-ad-discovery</module>
         <module>mscx-ad-zuul</module>
         <module>mscx-ad-gateway</module>
+        <module>mscx-ad-discovery-nacos</module>
     </modules>
 
     <parent>

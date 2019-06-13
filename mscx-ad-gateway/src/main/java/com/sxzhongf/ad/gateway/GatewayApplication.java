@@ -5,9 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.gateway.route.RouteLocator;
-import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
-import org.springframework.context.annotation.Bean;
 
 /**
  * GatewayApplication for spring-cloud-gateway网关启动类
@@ -19,12 +16,11 @@ import org.springframework.context.annotation.Bean;
  * @see EnableCircuitBreaker
  * @since 2019/6/13
  */
-@SpringCloudApplication
+@SpringBootApplication
+@EnableDiscoveryClient
 public class GatewayApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);
     }
-
-
 }

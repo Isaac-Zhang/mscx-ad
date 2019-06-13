@@ -5,16 +5,12 @@ import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-import java.util.Objects;
-
 /**
- * TokenFilter for 全局鉴权过滤器
+ * TokenFilter for 全局token校验过滤器
  *
  * @author <a href="mailto:magicianisaac@gmail.com">Isaac.Zhang</a>
  * @since 2019/6/13
@@ -36,6 +32,6 @@ public class TokenFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return 0;
+        return Ordered.HIGHEST_PRECEDENCE - 1;
     }
 }

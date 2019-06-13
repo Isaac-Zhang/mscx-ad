@@ -12,14 +12,17 @@ spring:
       discovery:
         locator:
           enabled: true
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 server:
   port: 2222
-eureka:
-  instance:
-    hostname: ad-gateway
-  client:
-    service-url:
-      defaultZone: http://server1:7777/eureka/,http://server2:8888/eureka/,http://server3:9999/eureka/
+#eureka:
+#  instance:
+#    hostname: ad-gateway
+#  client:
+#    service-url:
+#      defaultZone: http://server1:7777/eureka/,http://server2:8888/eureka/,http://server3:9999/eureka/
 management:
   endpoints:
     web:
