@@ -6,6 +6,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>mscx-ad-discovery</module>
+        <module>mscx-ad-zuul</module>
     </modules>
 
     <parent>

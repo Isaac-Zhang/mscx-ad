@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: ad-gateway-zuul
+server:
+  port: 1111
+eureka:
+  client:
+    service-url:
+      defaultZone: http://server1:7777/eureka/,http://server2:8888/eureka/,http://server3:9999/eureka/
+  instance:
+    hostname: ad-gateway-zuul

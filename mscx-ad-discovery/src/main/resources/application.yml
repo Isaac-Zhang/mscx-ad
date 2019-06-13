@@ -1,4 +1,4 @@
-# 注释为单节点服务发现配置
+##注释为单节点服务发现配置
 #spring:
 #  application:
 #    name: ad-discovery-server
@@ -11,7 +11,7 @@
 #    fetch-registry: false
 #    register-with-eureka: false #注册自己到eureka
 #    service-url:
-#      defaultZone: http://${eureka.instance.hostname}:${server.port}/ad/discovery/
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
 ---
 spring:
