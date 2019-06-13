@@ -1,0 +1,28 @@
+#study from https://blog.csdn.net/forezp/article/details/85057268
+spring:
+  application:
+    name: ad-gateway
+  cloud:
+    gateway:
+      routes:
+        id: service_to_zuul_gateway #自定义路由id
+        uri: ad-gateway-zuul:1111
+        predicate:
+          - Path=/api-zuul/**
+      discovery:
+        locator:
+          enabled: true
+server:
+  port: 2222
+eureka:
+  instance:
+    hostname: ad-gateway
+  client:
+    service-url:
+      defaultZone: http://server1:7777/eureka/,http://server2:8888/eureka/,http://server3:9999/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#        exclude:

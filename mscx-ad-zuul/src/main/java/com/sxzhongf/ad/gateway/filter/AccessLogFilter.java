@@ -40,7 +40,7 @@ public class AccessLogFilter extends ZuulFilter {
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest request = requestContext.getRequest();
         log.info("Request \"{}\" spent : {} seconds.", request.getRequestURI(),
-                (System.currentTimeMillis() - Long.valueOf(requestContext.get("api_request_time").toString())) / 100 / 1000);
+                (System.currentTimeMillis() - Long.valueOf(requestContext.get("api_request_time").toString())) / 1000);
         return null;
     }
 }
