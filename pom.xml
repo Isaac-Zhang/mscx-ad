@@ -10,6 +10,8 @@
         <module>mscx-ad-gateway</module>
         <module>mscx-ad-discovery-nacos</module>
         <module>mscx-ad-common</module>
+        <module>mscx-ad-db</module>
+        <module>mscx-ad-sponsor</module>
     </modules>
 
     <parent>
