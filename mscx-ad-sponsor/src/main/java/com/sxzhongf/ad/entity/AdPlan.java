@@ -24,7 +24,7 @@ public class AdPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "plan_id", nullable = false)
-    private Long plan_id;
+    private Long planId;
 
     @Basic
     @Column(name = "user_id", nullable = false)

@@ -25,7 +25,7 @@ public class AdUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
-    private Long user_id;
+    private Long userId;
 
     @Basic
     @Column(name = "user_name", nullable = false)
