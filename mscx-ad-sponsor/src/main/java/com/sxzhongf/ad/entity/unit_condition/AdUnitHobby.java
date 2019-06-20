@@ -22,7 +22,7 @@ public class AdUnitHobby {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hobby_id", nullable = false)
-    private Long keywordId;
+    private Long hobbyId;
 
     @Basic
     @Column(name = "unit_id", nullable = false)
