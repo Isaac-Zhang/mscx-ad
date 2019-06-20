@@ -25,7 +25,7 @@ public class AdUnit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "unit_id", nullable = false)
-    private Long unit_id;
+    private Long unitId;
 
     @Basic
     @Column(name = "plan_id", nullable = false)
@@ -58,7 +58,7 @@ public class AdUnit {
     @Column(name = "update_time", nullable = false)
     private Date updateTime;
 
-    public AdUnit(Long planId, String unitName, Integer unitStatus, Integer positionType, Long budgetFee) {
+    public AdUnit(Long planId, String unitName, Integer positionType, Long budgetFee) {
         this.planId = planId;
         this.unitName = unitName;
         this.unitStatus = CommonStatus.VALID.getStatus();

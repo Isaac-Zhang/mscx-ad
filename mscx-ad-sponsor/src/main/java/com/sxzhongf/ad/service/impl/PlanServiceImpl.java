@@ -2,6 +2,7 @@ package com.sxzhongf.ad.service.impl;
 
 import com.sxzhongf.ad.common.exception.AdException;
 import com.sxzhongf.ad.common.utils.CommonUtils;
+import com.sxzhongf.ad.constant.CommonStatus;
 import com.sxzhongf.ad.constant.Constants;
 import com.sxzhongf.ad.dao.AdPlanRepository;
 import com.sxzhongf.ad.dao.AdUserRepository;
@@ -14,8 +15,8 @@ import com.sxzhongf.ad.vo.PlanResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -80,6 +81,7 @@ public class PlanServiceImpl implements IPlanService {
     }
 
     @Override
+    @Transactional
     public PlanResponseVO updatePlan(PlanRequestVO planRequestVO) throws AdException {
         if (!planRequestVO.updateOrDeleteValidate()) {
             throw new AdException(Constants.ErrorMessage.REQUEST_PARAM_ERROR);
@@ -106,6 +108,7 @@ public class PlanServiceImpl implements IPlanService {
     }
 
     @Override
+    @Transactional
     public void deletePlan(PlanRequestVO planRequestVO) throws AdException {
         if (!planRequestVO.updateOrDeleteValidate()) {
             throw new AdException(Constants.ErrorMessage.REQUEST_PARAM_ERROR);
@@ -116,6 +119,12 @@ public class PlanServiceImpl implements IPlanService {
             throw new AdException("找不到当前推广计划，删除失败！");
         }
 
-        planRepository.deleteById(planRequestVO.getPlanId());
+        AdPlan plan = oldPlan.get();
+        //虚拟删除
+        plan.setPlanStatus(CommonStatus.INVALID.getStatus());
+        plan.setUpdateTime(new Date());
+        planRepository.save(plan);
+
+//        planRepository.deleteById(planRequestVO.getPlanId());
     }
 }
