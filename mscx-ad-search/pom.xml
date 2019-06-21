@@ -80,10 +80,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure-processor</artifactId>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.kafka</groupId>-->
+            <!--<artifactId>spring-kafka</artifactId>-->
+            <!--<version>2.1.5.RELEASE</version>-->
+        <!--</dependency>-->
+
         <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-            <version>2.1.5.RELEASE</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

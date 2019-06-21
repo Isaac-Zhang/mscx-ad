@@ -1,0 +1,36 @@
+server:
+  port: 7001
+  servlet:
+    context-path: /ad-search #http请求的根路径（请求前缀，在handle的mapping之前，需要127.0.0.1/ad-search/XXXX）
+spring:
+  application:
+    name: mscx-ad-search
+  jpa:
+    show-sql: true #执行时是否打印sql语句，方便调试
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.format_sql: true
+    open-in-view: false #控制是否在懒加载时，有可能会找不到bean报错
+  datasource:
+    username: root
+    url: jdbc:mysql://127.0.0.1:3306/advertisement?useSSL=false&autoReconnect=true
+    password: 12345678
+    tomcat:
+      max-active: 4 #最大连接数
+      min-idle: 2 #最小空闲连接数
+      initial-size: 2 #默认初始化连接数
+eureka:
+  client:
+    service-url:
+      defaultZone: http://server1:7777/eureka/,http://server2:8888/eureka/,http://server3:9999/eureka/
+feign:
+  hystrix:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+

@@ -2,9 +2,11 @@ package com.sxzhongf.ad.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.sxzhongf.ad.common.exception.AdException;
+import com.sxzhongf.ad.common.vo.CommonResponse;
 import com.sxzhongf.ad.service.IUserService;
-import com.sxzhongf.ad.vo.UserRequestVO;
-import com.sxzhongf.ad.vo.UserResponseVO;
+import com.sxzhongf.ad.client.vo.UserRequestVO;
+import com.sxzhongf.ad.client.vo.UserResponseVO;
+import feign.Param;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,4 +30,11 @@ public class UserController {
         log.info("ad-sponsor: createUser -> {}", JSON.toJSONString(requestVO));
         return userService.createUser(requestVO);
     }
+
+    @GetMapping(path = "/get")
+    public CommonResponse getUserList(@Param(value = "username") String username) throws AdException {
+        log.info("ad-sponsor: createUser -> {}", JSON.toJSONString(username));
+        return new CommonResponse(userService.findAllByUserName(username));
+    }
+
 }

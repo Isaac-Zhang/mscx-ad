@@ -1,8 +1,11 @@
 package com.sxzhongf.ad.service;
 
 import com.sxzhongf.ad.common.exception.AdException;
-import com.sxzhongf.ad.vo.UserRequestVO;
-import com.sxzhongf.ad.vo.UserResponseVO;
+import com.sxzhongf.ad.client.vo.UserRequestVO;
+import com.sxzhongf.ad.client.vo.UserResponseVO;
+import com.sxzhongf.ad.entity.AdUser;
+
+import java.util.List;
 
 /**
  * IUserService for 用户service
@@ -20,4 +23,6 @@ public interface IUserService {
      * @throws AdException 错误
      */
     UserResponseVO createUser(UserRequestVO userRequestVO) throws AdException;
+
+    List<AdUser> findAllByUserName(String userName);
 }

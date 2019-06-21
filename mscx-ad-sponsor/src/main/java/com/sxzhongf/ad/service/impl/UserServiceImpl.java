@@ -2,17 +2,19 @@ package com.sxzhongf.ad.service.impl;
 
 import com.sxzhongf.ad.common.exception.AdException;
 import com.sxzhongf.ad.common.utils.CommonUtils;
+import com.sxzhongf.ad.common.vo.CommonResponse;
 import com.sxzhongf.ad.constant.Constants;
 import com.sxzhongf.ad.dao.AdUserRepository;
 import com.sxzhongf.ad.entity.AdUser;
 import com.sxzhongf.ad.service.IUserService;
-import com.sxzhongf.ad.vo.UserRequestVO;
-import com.sxzhongf.ad.vo.UserResponseVO;
+import com.sxzhongf.ad.client.vo.UserRequestVO;
+import com.sxzhongf.ad.client.vo.UserResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * UserServiceImpl for 用户service
@@ -52,5 +54,10 @@ public class UserServiceImpl implements IUserService {
         AdUser user = userRepository.save(new AdUser(userRequestVO.getUserName(), CommonUtils.md5(userRequestVO.getUserName())));
         return new UserResponseVO(user.getUserId(), user.getUserName(), user.getToken(),
                 user.getCreateTime(), user.getUpdateTime());
+    }
+
+    @Override
+    public List<AdUser> findAllByUserName(String userName) {
+        return userRepository.findAllByUserName(userName);
     }
 }

@@ -1,7 +1,7 @@
 package com.sxzhongf.ad.service;
 
 import com.sxzhongf.ad.common.exception.AdException;
-import com.sxzhongf.ad.vo.*;
+import com.sxzhongf.ad.client.vo.*;
 
 /**
  * IUnitService for 推广单元service

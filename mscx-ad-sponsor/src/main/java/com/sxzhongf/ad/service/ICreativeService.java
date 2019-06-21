@@ -1,8 +1,8 @@
 package com.sxzhongf.ad.service;
 
 import com.sxzhongf.ad.common.exception.AdException;
-import com.sxzhongf.ad.vo.CreativeRequestVO;
-import com.sxzhongf.ad.vo.CreativeResponseVO;
+import com.sxzhongf.ad.client.vo.CreativeRequestVO;
+import com.sxzhongf.ad.client.vo.CreativeResponseVO;
 
 /**
  * ICreativeService for 创意service interface

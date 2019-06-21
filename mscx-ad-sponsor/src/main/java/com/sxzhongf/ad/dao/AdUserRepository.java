@@ -3,6 +3,8 @@ package com.sxzhongf.ad.dao;
 import com.sxzhongf.ad.entity.AdUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 /**
  * AdUserRepository for 用户数据库操作接口
  *
@@ -18,4 +20,6 @@ public interface AdUserRepository extends JpaRepository<AdUser, Long> {
      * @return 用户对象
      */
     AdUser findByUserName(String username);
+
+    List<AdUser> findAllByUserName(String userName);
 }

@@ -2,9 +2,9 @@ package com.sxzhongf.ad.service;
 
 import com.sxzhongf.ad.common.exception.AdException;
 import com.sxzhongf.ad.entity.AdPlan;
-import com.sxzhongf.ad.vo.PlanGetRequestVO;
-import com.sxzhongf.ad.vo.PlanRequestVO;
-import com.sxzhongf.ad.vo.PlanResponseVO;
+import com.sxzhongf.ad.client.vo.PlanGetRequestVO;
+import com.sxzhongf.ad.client.vo.PlanRequestVO;
+import com.sxzhongf.ad.client.vo.PlanResponseVO;
 
 import java.util.List;
 

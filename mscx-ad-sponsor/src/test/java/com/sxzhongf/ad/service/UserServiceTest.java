@@ -2,8 +2,8 @@ package com.sxzhongf.ad.service;
 
 import com.alibaba.fastjson.JSON;
 import com.sxzhongf.ad.common.exception.AdException;
-import com.sxzhongf.ad.vo.UserRequestVO;
-import com.sxzhongf.ad.vo.UserResponseVO;
+import com.sxzhongf.ad.client.vo.UserRequestVO;
+import com.sxzhongf.ad.client.vo.UserResponseVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

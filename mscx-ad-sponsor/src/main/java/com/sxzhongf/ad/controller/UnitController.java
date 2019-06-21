@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.sxzhongf.ad.common.exception.AdException;
 import com.sxzhongf.ad.service.IUnitService;
 import com.sxzhongf.ad.service.IUserService;
-import com.sxzhongf.ad.vo.*;
+import com.sxzhongf.ad.client.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
