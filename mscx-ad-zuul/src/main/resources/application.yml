@@ -11,9 +11,11 @@ eureka:
     hostname: ad-gateway-zuul
 zuul:
   routes:
-    api-a:
-      path: /api-a/**
-      serviceId: service-A
-    api-b:
-      path: /api-b/**
-      serviceId: service-B
+    sponsor: #在路由中自定义服务路由名称
+      path: /ad-sponsor/**
+      serviceId: mscx-ad-sponsor #微服务name
+      strip-prefix: false
+#    api-b:
+#      path: /api-b/**
+#      serviceId: service-B
+  prefix: /gateway/api
