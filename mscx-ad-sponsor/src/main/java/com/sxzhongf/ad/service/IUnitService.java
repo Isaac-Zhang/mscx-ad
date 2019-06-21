@@ -29,4 +29,9 @@ public interface IUnitService {
      * 创建推广单元-地域
      */
     UnitDistrictResponseVO createUnitDistrict(UnitDistrictRequestVO requestVO) throws AdException;
+
+    /**
+     * 插入创意和推广单元关系表数据
+     */
+    CreativeUnitRelationshipResponseVO createCreativeUnitRelationship(CreativeUnitRelationshipRequestVO requestVO) throws AdException;
 }
