@@ -75,7 +75,7 @@ public class PlanServiceImpl implements IPlanService {
         if (!planGetRequestVO.validate()) {
             throw new AdException(Constants.ErrorMessage.REQUEST_PARAM_ERROR);
         }
-        List<AdPlan> planList = planRepository.findAllByPlanIdsAndUserId(planGetRequestVO.getPlanIds()
+        List<AdPlan> planList = planRepository.findAllByPlanIdAndUserId(planGetRequestVO.getPlanIds()
                 , planGetRequestVO.getUserId());
         return planList;
     }

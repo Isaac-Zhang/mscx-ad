@@ -40,7 +40,7 @@ public class UnitController {
     /**
      * 创建推广单元-关键字
      */
-    @PostMapping(name = "/keyword/create")
+    @PostMapping(value = "/keyword/create")
     public UnitKeywordResponseVO createUnitKeyword(@RequestBody UnitKeywordRequestVO requestVO) throws AdException {
 
         log.info("Ad-sponsor::UnitController createUnitKeyword->{}", JSON.toJSONString(requestVO));
@@ -50,7 +50,7 @@ public class UnitController {
     /**
      * 创建推广单元-爱好
      */
-    @PostMapping(name = "/hobby/create")
+    @PostMapping(path = "/hobby/create")
     public UnitHobbyResponseVO createUnitHobby(@RequestBody UnitHobbyRequestVO requestVO) throws AdException {
 
         log.info("Ad-sponsor::UnitController createUnitHobby->{}", JSON.toJSONString(requestVO));
@@ -60,7 +60,7 @@ public class UnitController {
     /**
      * 创建推广单元-地域
      */
-    @PostMapping(name = "/district/create")
+    @PostMapping(path = "/district/create")
     public UnitDistrictResponseVO createUnitDistrict(@RequestBody UnitDistrictRequestVO requestVO) throws AdException {
 
         log.info("Ad-sponsor::UnitController createUnitDistrict->{}", JSON.toJSONString(requestVO));

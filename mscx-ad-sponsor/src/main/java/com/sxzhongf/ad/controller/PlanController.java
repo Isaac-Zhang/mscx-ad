@@ -23,7 +23,7 @@ import java.util.List;
  */
 @RestController
 @Slf4j
-@RequestMapping("/plan")
+@RequestMapping(path = "/plan")
 public class PlanController {
 
     @Autowired
@@ -39,20 +39,20 @@ public class PlanController {
         return new CommonResponse<>(planList);
     }
 
-    @PostMapping(name = "/create")
+    @PostMapping(value = "/create")
     public PlanResponseVO createPlan(@RequestBody PlanRequestVO requestVO) throws AdException {
         log.info("Ad-sponsor: createPlan->{}", JSON.toJSONString(requestVO));
         return planService.createPlan(requestVO);
     }
 
-    @PostMapping(name = "/update")
+    @PostMapping(value = "/update")
     public PlanResponseVO updatePlan(@RequestBody PlanRequestVO requestVO) throws AdException {
         log.info("Ad-sponsor: updatePlan->{}", JSON.toJSONString(requestVO));
         return planService.updatePlan(requestVO);
     }
 
     @IgnoreResponseAdvice
-    @PostMapping(name = "/delete")
+    @PostMapping(value = "/delete")
     public CommonResponse deletePlan(@RequestBody PlanRequestVO requestVO) throws AdException {
         log.info("Ad-sponsor: deletePlan->{}", JSON.toJSONString(requestVO));
         planService.deletePlan(requestVO);

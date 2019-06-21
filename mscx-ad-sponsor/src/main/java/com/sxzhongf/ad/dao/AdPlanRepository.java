@@ -15,7 +15,7 @@ public interface AdPlanRepository extends JpaRepository<AdPlan, Long> {
 
     AdPlan findByPlanIdAndUserId(Long planId, Long userId);
 
-    List<AdPlan> findAllByPlanIdsAndUserId(Iterable<Long> planIds, Long userId);
+    List<AdPlan> findAllByPlanIdAndUserId(List<Long> planIds, Long userId);
 
     AdPlan findByUserIdAndPlanName(Long userId, String planName);
 

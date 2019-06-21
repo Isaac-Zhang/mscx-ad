@@ -40,8 +40,8 @@ public class AdCreative {
      * 物料的类型，比如图片可以是 bmp,jpge等等
      */
     @Basic
-    @Column(name = "materiel_type", nullable = false)
-    private Integer materielType;
+    @Column(name = "material_type", nullable = false)
+    private Integer materialType;
 
     /**
      * 物料的高度
@@ -102,7 +102,7 @@ public class AdCreative {
                       Integer auditStatus, Long userId, String url) {
         this.name = name;
         this.type = type;
-        this.materielType = materielType;
+        this.materialType = materielType;
         this.height = height;
         this.width = width;
         this.size = size;

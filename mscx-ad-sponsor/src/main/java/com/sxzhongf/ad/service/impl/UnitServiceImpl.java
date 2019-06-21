@@ -3,7 +3,7 @@ package com.sxzhongf.ad.service.impl;
 import com.sxzhongf.ad.common.exception.AdException;
 import com.sxzhongf.ad.constant.Constants;
 import com.sxzhongf.ad.dao.AdPlanRepository;
-import com.sxzhongf.ad.dao.AdUnitRepositoy;
+import com.sxzhongf.ad.dao.AdUnitRepository;
 import com.sxzhongf.ad.dao.CreativeRepository;
 import com.sxzhongf.ad.dao.unit_condition.AdUnitDistrictRepository;
 import com.sxzhongf.ad.dao.unit_condition.AdUnitHobbyRepository;
@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 public class UnitServiceImpl implements IUnitService {
 
     private final AdPlanRepository planRepository;
-    private final AdUnitRepositoy unitRepository;
+    private final AdUnitRepository unitRepository;
     private final CreativeRepository creativeRepository;
     private final RelationshipCreativeUnitRepository relationshipCreativeUnitRepository;
     private final AdUnitKeywordRepository unitKeywordRepository;
@@ -45,7 +45,7 @@ public class UnitServiceImpl implements IUnitService {
     private final AdUnitDistrictRepository unitDistrictRepository;
 
     @Autowired
-    public UnitServiceImpl(AdPlanRepository planRepository, AdUnitRepositoy unitRepository
+    public UnitServiceImpl(AdPlanRepository planRepository, AdUnitRepository unitRepository
             , CreativeRepository creativeRepository
             , RelationshipCreativeUnitRepository relationshipCreativeUnitRepository
             , AdUnitKeywordRepository unitKeywordRepository, AdUnitHobbyRepository unitHobbyRepository

@@ -33,7 +33,7 @@ public class CreativeRequestVO {
         AdCreative model = new AdCreative();
         model.setName(name);
         model.setType(type);
-        model.setMaterielType(materialType);
+        model.setMaterialType(materialType);
         model.setHeight(height);
         model.setWidth(width);
         model.setDuration(duration);
