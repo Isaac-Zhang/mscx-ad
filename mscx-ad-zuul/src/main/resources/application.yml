@@ -15,6 +15,10 @@ zuul:
       path: /ad-sponsor/**
       serviceId: mscx-ad-sponsor #微服务name
       strip-prefix: false
+    search: #在路由中自定义服务路由名称
+      path: /ad-search/**
+      serviceId: mscx-ad-search #微服务name
+      strip-prefix: false
 #    api-b:
 #      path: /api-b/**
 #      serviceId: service-B

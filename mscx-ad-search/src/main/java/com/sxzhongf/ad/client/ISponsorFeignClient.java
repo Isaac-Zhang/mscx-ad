@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,5 +24,9 @@ public interface ISponsorFeignClient {
     CommonResponse<List<AdPlanVO>> getAdPlansUseFeign(@RequestBody AdPlanGetRequestVO requestVO);
 
     @RequestMapping(value = "/ad-sponsor/user/get", method = RequestMethod.GET)
-    CommonResponse getUsers(@Param(value = "username") String username);
+    /**
+     * Feign 埋坑之 如果是Get请求，必须在所有参数前添加{@link RequestParam},不能使用{@link Param}
+     * 会被自动转发为POST请求。
+     */
+    CommonResponse getUsers(@RequestParam(value = "username") String username);
 }
