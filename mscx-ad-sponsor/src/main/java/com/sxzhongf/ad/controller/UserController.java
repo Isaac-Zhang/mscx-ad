@@ -33,7 +33,7 @@ public class UserController {
 
     @GetMapping(path = "/get")
     public CommonResponse getUserList(@Param(value = "username") String username) throws AdException {
-        log.info("ad-sponsor: createUser -> {}", JSON.toJSONString(username));
+        log.info("ad-sponsor: getUserList -> {}", JSON.toJSONString(username));
         return new CommonResponse(userService.findAllByUserName(username));
     }
 
