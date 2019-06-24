@@ -13,6 +13,7 @@
         <module>mscx-ad-db</module>
         <module>mscx-ad-sponsor</module>
         <module>mscx-ad-search</module>
+        <module>mscx-ad-feign-sdk</module>
     </modules>
 
     <parent>

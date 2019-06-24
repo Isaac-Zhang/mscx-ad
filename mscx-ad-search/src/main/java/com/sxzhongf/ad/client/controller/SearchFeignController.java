@@ -1,8 +1,8 @@
 package com.sxzhongf.ad.client.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.sxzhongf.ad.client.ISponsorFeignClient;
 import com.sxzhongf.ad.common.vo.CommonResponse;
+import com.sxzhongf.ad.feign.client.ISponsorFeignClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
