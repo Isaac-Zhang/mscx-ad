@@ -1,4 +1,4 @@
-package com.sxzhongf.ad.client.controller;
+package com.sxzhongf.ad.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.sxzhongf.ad.common.vo.CommonResponse;

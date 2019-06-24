@@ -1,9 +1,9 @@
-package com.sxzhongf.ad.client.controller;
+package com.sxzhongf.ad.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.sxzhongf.ad.client.vo.AdPlanGetRequestVO;
-import com.sxzhongf.ad.client.vo.AdPlanVO;
 import com.sxzhongf.ad.common.vo.CommonResponse;
+import com.sxzhongf.ad.feign.client.vo.AdPlanGetRequestVO;
+import com.sxzhongf.ad.feign.client.vo.AdPlanVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
