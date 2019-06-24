@@ -17,7 +17,7 @@ import java.util.List;
  * @author <a href="mailto:magicianisaac@gmail.com">Isaac.Zhang | 若初</a>
  * @since 2019/6/21
  */
-@FeignClient(value = "mscx-ad-sponsor")
+@FeignClient(value = "mscx-ad-sponsor", fallback = SponsorClientHystrix.class)
 public interface ISponsorFeignClient {
     @RequestMapping(value = "/ad-sponsor/plan/get", method = RequestMethod.POST)
     CommonResponse<List<AdPlanVO>> getAdPlansUseFeign(@RequestBody AdPlanGetRequestVO requestVO);
