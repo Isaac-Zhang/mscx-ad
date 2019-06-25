@@ -30,7 +30,15 @@ public class ExportDataController {
 
     @GetMapping("/plan")
     public CommonResponse exportAdPlans() {
-        exportDataService.exportAdPlanTable(DConstant.DATA_ROOT_DIR + DConstant.AD_PLAN);
+
+        exportDataService.exportAdPlanTable(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_PLAN));
+        exportDataService.exportAdCreativeRelationUnit(String.format("%s%s"
+                , DConstant.DATA_ROOT_DIR, DConstant.AD_CREATIVE_RELARION_UNIT));
+        exportDataService.exportAdCreativeTable(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_CREATIVE));
+        exportDataService.exportAdUnitDistrict(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT_DISTRICT));
+        exportDataService.exportAdUnitHobby(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT_HOBBY));
+        exportDataService.exportAdUnitKeywords(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT_KEYWORD));
+        exportDataService.exportAdUnitTable(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT));
         return new CommonResponse();
     }
 }
