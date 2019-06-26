@@ -239,7 +239,13 @@ public class AdLevelDataHandler {
         );
     }
 
-    private static void handleLevel4Index(AdUnitHobbyTable unitHobbyTable, OperationTypeEnum type) {
+    /**
+     * 实现推广单元 兴趣维度 的第四层级索引实现。
+     * 第4层级的索引是表示 依赖于3级索引
+     *
+     * @param type 操作类型 {@link OperationTypeEnum}
+     */
+    public static void handleLevel4Index(AdUnitHobbyTable unitHobbyTable, OperationTypeEnum type) {
 
         //判断是否为更新操作
         if (type == OperationTypeEnum.UPDATE) {
