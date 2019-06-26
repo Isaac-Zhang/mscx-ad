@@ -73,7 +73,7 @@
         <dependency>
             <groupId>com.github.shyiko</groupId>
             <artifactId>mysql-binlog-connector-java</artifactId>
-            <version>0.20.1</version>
+            <version>0.18.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
