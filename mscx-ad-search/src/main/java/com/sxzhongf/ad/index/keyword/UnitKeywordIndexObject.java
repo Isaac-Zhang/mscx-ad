@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UnitKeywordIndexObject {
-    private Long unitKeyword;
+    private Long unitId;
     private String keyword;
 }

@@ -40,4 +40,20 @@ public class CommonUtils {
         }
         return date;
     }
+
+    /**
+     * 处理字符串用'-'拼接
+     *
+     * @param args 可变参数数组
+     * @return 拼接后结果
+     */
+    public static String stringConcat(String... args) {
+        StringBuilder builder = new StringBuilder();
+        for (String arg : args) {
+            builder.append(arg);
+            builder.append("-");
+        }
+        builder.deleteCharAt(builder.length() - 1);
+        return builder.toString();
+    }
 }

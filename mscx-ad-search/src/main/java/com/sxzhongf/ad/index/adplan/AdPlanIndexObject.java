@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * AdPlanIndexObject for 推广计划索引对象
  *
@@ -18,8 +20,8 @@ public class AdPlanIndexObject {
     private Long planId;
     private Long userId;
     private Integer planStatus;
-    private String startDate;
-    private String endDate;
+    private Date startDate;
+    private Date endDate;
 
     public void update(AdPlanIndexObject newObject) {
 
