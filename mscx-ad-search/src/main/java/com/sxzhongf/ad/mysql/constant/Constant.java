@@ -69,7 +69,7 @@ public class Constant {
         public static final String TABLE_NAME = "ad_unit_keyword";
 
         public static final String COLUMN_UNIT_ID = "unit_id";
-        public static final String COLUMN_PROVINCE = "keyword";
+        public static final String COLUMN_KEYWORD = "keyword";
     }
 
     public static class AD_UNIT_HOBBY_TABLE_INFO {
@@ -77,7 +77,7 @@ public class Constant {
         public static final String TABLE_NAME = "ad_unit_hobby";
 
         public static final String COLUMN_UNIT_ID = "unit_id";
-        public static final String COLUMN_PROVINCE = "hobby_tag";
+        public static final String COLUMN_HOBBY_TAG = "hobby_tag";
     }
 
     //key -> 表名
