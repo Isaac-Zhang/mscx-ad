@@ -50,6 +50,7 @@ public class KafkaSender implements ISender {
                     MysqlRowData.class
             );
             System.out.println("kafka process MysqlRowData: " + JSON.toJSONString(rowData));
+//            sender.sender();
         }
 
     }
