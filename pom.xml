@@ -31,7 +31,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -73,7 +73,7 @@
             </snapshots>
         </repository>
         <repository>
-            <id>alibaba</id>
+            <id>alibaba-milestones</id>
             <name>ali Milestones</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
             <snapshots>
