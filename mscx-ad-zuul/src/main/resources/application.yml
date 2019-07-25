@@ -10,6 +10,7 @@ eureka:
   instance:
     hostname: ad-gateway-zuul
 zuul:
+  ignored-services: '*' # 过滤所有请求，除了下面routes中声明过的服务
   routes:
     sponsor: #在路由中自定义服务路由名称
       path: /ad-sponsor/**
@@ -19,7 +20,5 @@ zuul:
       path: /ad-search/**
       serviceId: mscx-ad-search #微服务name
       strip-prefix: false
-#    api-b:
-#      path: /api-b/**
-#      serviceId: service-B
   prefix: /gateway/api
+  strip-prefix: false #不对 prefix: /gateway/api 设置的路径进行截取，默认转发会截取掉配置的前缀
