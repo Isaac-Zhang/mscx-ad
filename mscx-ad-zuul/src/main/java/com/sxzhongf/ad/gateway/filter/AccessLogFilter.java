@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * AccessLogFilter for TODO
+ * AccessLogFilter for 记录服务请求结束时间，配合{@link PreRequestFilter}计算整个调用请求链路消耗时间
  *
  * @author <a href="mailto:magicianisaac@gmail.com">Isaac.Zhang</a>
  * @since 2019/6/13

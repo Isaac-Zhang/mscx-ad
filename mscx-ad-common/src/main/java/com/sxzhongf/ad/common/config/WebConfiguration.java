@@ -68,7 +68,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         //清空所有转换器
         converters.clear();
-
+        // Java Obj -> Json Obj (http header: application/json)
         converters.add(new MappingJackson2HttpMessageConverter());
     }
 }

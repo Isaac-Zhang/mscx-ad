@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 
 /**
- * PreRequestFilter for 自定义{@link ZuulFilter}
+ * PreRequestFilter for 自定义{@link ZuulFilter}，记录服务请求进入时间
  *
  * @author <a href="mailto:magicianisaac@gmail.com">Isaac.Zhang</a>
  * @since 2019/6/13
