@@ -6,6 +6,8 @@ import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 /**
  * GatewayApplication for zuul网关启动类
@@ -19,10 +21,15 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  */
 @SpringCloudApplication
 @EnableZuulProxy
+@EnableScheduling
 public class GatewayApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);
     }
 
+    @Scheduled(fixedRate = 2000)
+    private void print(){
+        System.out.println("hello scheduled.");
+    }
 }

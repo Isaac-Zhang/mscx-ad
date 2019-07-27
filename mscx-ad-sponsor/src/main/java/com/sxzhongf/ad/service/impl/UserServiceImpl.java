@@ -44,14 +44,17 @@ public class UserServiceImpl implements IUserService {
     @Transactional
     public UserResponseVO createUser(UserRequestVO userRequestVO) throws AdException {
         if (!userRequestVO.validate()) {
+            log.error("Request params error: {}", userRequestVO);
             throw new AdException(Constants.ErrorMessage.REQUEST_PARAM_ERROR);
         }
         //查重
         AdUser existUser = userRepository.findByUserName(userRequestVO.getUserName());
         if (existUser != null) {
+            log.error("{} user is not exist.", userRequestVO.getUserName());
             throw new AdException(Constants.ErrorMessage.USER_EXIST);
         }
         AdUser user = userRepository.save(new AdUser(userRequestVO.getUserName(), CommonUtils.md5(userRequestVO.getUserName())));
+        log.info("current user is : {}", user);
         return new UserResponseVO(user.getUserId(), user.getUserName(), user.getToken(),
                 user.getCreateTime(), user.getUpdateTime());
     }

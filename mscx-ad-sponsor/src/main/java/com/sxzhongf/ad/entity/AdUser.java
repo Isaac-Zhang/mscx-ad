@@ -47,6 +47,12 @@ public class AdUser {
     @Column(name = "update_time", nullable = false)
     private Date updateTime;
 
+    /**
+     * 创建用户时所需的必填字段
+     *
+     * @param user_name 用户名称
+     * @param token     token
+     */
     public AdUser(String user_name, String token) {
         this.userName = user_name;
         this.token = token;
