@@ -21,7 +21,7 @@ import org.springframework.scheduling.annotation.Scheduled;
  */
 @SpringCloudApplication
 @EnableZuulProxy
-@EnableScheduling
+//@EnableScheduling
 public class GatewayApplication {
 
     public static void main(String[] args) {

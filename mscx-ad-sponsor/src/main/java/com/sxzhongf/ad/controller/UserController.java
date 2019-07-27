@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RequestMapping("/user")
 public class UserController {
-
     @Autowired
     private IUserService userService;
 
@@ -36,5 +35,4 @@ public class UserController {
         log.info("ad-sponsor: getUserList -> {}", JSON.toJSONString(username));
         return new CommonResponse(userService.findAllByUserName(username));
     }
-
 }

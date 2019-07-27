@@ -9,8 +9,9 @@ eureka:
       defaultZone: http://server1:7777/eureka/,http://server2:8888/eureka/,http://server3:9999/eureka/
   instance:
     hostname: ad-gateway-zuul
+    prefer-ip-address: false
 zuul:
-  ignored-services: '*' # 过滤所有请求，除了下面routes中声明过的服务
+#  ignored-services: '*' # 过滤所有请求，除了下面routes中声明过的服务
   routes:
     sponsor: #在路由中自定义服务路由名称
       path: /ad-sponsor/**
@@ -21,4 +22,4 @@ zuul:
       serviceId: mscx-ad-search #微服务name
       strip-prefix: false
   prefix: /gateway/api
-  strip-prefix: false #不对 prefix: /gateway/api 设置的路径进行截取，默认转发会截取掉配置的前缀
+  strip-prefix: true #不对 prefix: /gateway/api 设置的路径进行截取，默认转发会截取掉配置的前缀
