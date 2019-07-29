@@ -18,15 +18,16 @@
     <description>广告检索系统</description>
 
     <dependencies>
+        <!-- hystrix 监控面板 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
             <version>1.2.7.RELEASE</version>
         </dependency>
+        <!--eureka client-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-            <version>1.2.7.RELEASE</version>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,6 +44,7 @@
             <artifactId>spring-cloud-starter-ribbon</artifactId>
             <version>1.2.7.RELEASE</version>
         </dependency>
+        <!--数据库链接依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -61,24 +63,29 @@
             <artifactId>mscx-ad-feign-sdk</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- 工具类 -->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
         </dependency>
+        <!-- 集合类操作 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>4.1</version>
         </dependency>
+        <!-- binlog 日志监听,解析开源工具类库 -->
         <dependency>
             <groupId>com.github.shyiko</groupId>
             <artifactId>mysql-binlog-connector-java</artifactId>
             <version>0.18.1</version>
         </dependency>
+        <!--springboot 中的配置相关-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure-processor</artifactId>
         </dependency>
+        <!-- kafka 依赖 -->
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>

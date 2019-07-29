@@ -17,11 +17,11 @@ import org.springframework.web.client.RestTemplate;
  * @author <a href="mailto:magicianisaac@gmail.com">Isaac.Zhang | 若初</a>
  * @since 2019/6/21
  */
-@EnableFeignClients
-@EnableDiscoveryClient
-@EnableHystrix
-@EnableCircuitBreaker
-@EnableHystrixDashboard
+@EnableFeignClients  //启动Feign 客户端，为了访问其他微服务
+@EnableDiscoveryClient // 开启服务发现组件，在这里等同于 @EnableEurekaClient
+@EnableHystrix // 开启hystrix 断路器
+@EnableCircuitBreaker // 断路器
+@EnableHystrixDashboard // 开启hystrix 监控
 @SpringBootApplication
 public class AdSearchApplication {
     public static void main(String[] args) {

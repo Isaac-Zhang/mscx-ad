@@ -1,16 +1,14 @@
 package com.sxzhongf.ad.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.sxzhongf.ad.common.annotation.IgnoreResponseAdvice;
 import com.sxzhongf.ad.common.vo.CommonResponse;
 import com.sxzhongf.ad.feign.client.vo.AdPlanGetRequestVO;
 import com.sxzhongf.ad.feign.client.vo.AdPlanVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -33,7 +31,8 @@ public class SearchController {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping(path = "/plan/get-ribbon")
+    @PostMapping(path = "/plan/get-ribbon")
+    @IgnoreResponseAdvice //如果打上这个标记，我们的统一拦截就会忽略掉它
     public CommonResponse<List<AdPlanVO>> getAdPlansUseRibbon(@RequestBody AdPlanGetRequestVO requestVO) {
         log.info("ad-search::getAdPlansUseRibbon -> {}", JSON.toJSONString(requestVO));
         return restTemplate.postForEntity(
