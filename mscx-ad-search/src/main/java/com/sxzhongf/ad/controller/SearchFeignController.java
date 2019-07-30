@@ -21,13 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/search-feign")
 public class SearchFeignController {
 
+    /**
+     * 注入我们自定义的FeignClient
+     */
     private final ISponsorFeignClient sponsorFeignClient;
-
     @Autowired
     public SearchFeignController(ISponsorFeignClient sponsorFeignClient) {
         this.sponsorFeignClient = sponsorFeignClient;
     }
-
 
     @GetMapping(path = "/user/get")
     public CommonResponse getUsers(@Param(value = "username") String username) {
