@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 获取{@link com.sxzhongf.ad.index.creative.CreativeIndexAwareImpl}索引服务类
  * 如下：
  * {@code
- *   DataTable.of(CreativeIndexAwareImpl.class)
+ *   IndexDataTableUtils.of(CreativeIndexAwareImpl.class)
  * }
  * @author <a href="mailto:magicianisaac@gmail.com">Isaac.Zhang | 若初</a>
  * @since 2019/6/25
