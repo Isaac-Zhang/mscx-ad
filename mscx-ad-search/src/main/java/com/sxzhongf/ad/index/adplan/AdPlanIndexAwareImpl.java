@@ -44,6 +44,7 @@ public class AdPlanIndexAwareImpl implements IIndexAware<Long, AdPlanIndexObject
 
         log.info("AdPlanIndexAwareImpl before update::{}", planIndexObjectMap);
 
+        //查询当前的索引信息，如果不存在，直接新增索引信息
         AdPlanIndexObject oldObj = planIndexObjectMap.get(key);
         if (null == oldObj) {
             planIndexObjectMap.put(key, value);
