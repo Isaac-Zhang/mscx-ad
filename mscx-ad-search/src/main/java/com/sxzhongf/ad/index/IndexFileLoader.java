@@ -1,7 +1,7 @@
 package com.sxzhongf.ad.index;
 
 import com.alibaba.fastjson.JSON;
-import com.sxzhongf.ad.common.export.FileConstant;
+import com.sxzhongf.ad.common.export.DConstant;
 import com.sxzhongf.ad.common.export.table.*;
 import com.sxzhongf.ad.handler.AdLevelDataHandler;
 import com.sxzhongf.ad.mysql.constant.OperationTypeEnum;
@@ -33,7 +33,7 @@ public class IndexFileLoader {
     public void init() {
         //加载 推广计划
         List<String> adPlanStrings = loadExportedData(String.format("%s%s",
-                FileConstant.DATA_ROOT_DIR, FileConstant.AD_PLAN
+                DConstant.DATA_ROOT_DIR, DConstant.AD_PLAN
         ));
         adPlanStrings.forEach(p -> AdLevelDataHandler.handleLevel2Index(
                 JSON.parseObject(p, AdPlanTable.class), OperationTypeEnum.ADD
@@ -42,7 +42,7 @@ public class IndexFileLoader {
         //加载广告创意
         List<String> adCreativeStrings = loadExportedData(
                 String.format("%s%s",
-                        FileConstant.DATA_ROOT_DIR, FileConstant.AD_CREATIVE
+                        DConstant.DATA_ROOT_DIR, DConstant.AD_CREATIVE
                 )
         );
         adCreativeStrings.forEach(c -> AdLevelDataHandler.handleLevel2Index(
@@ -52,7 +52,7 @@ public class IndexFileLoader {
         //加载推广单元
         List<String> adUnitStrings = loadExportedData(
                 String.format("%s%s",
-                        FileConstant.DATA_ROOT_DIR, FileConstant.AD_UNIT)
+                        DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT)
         );
         adUnitStrings.forEach(u -> AdLevelDataHandler.handleLevel3Index(
                 JSON.parseObject(u, AdUnitTable.class), OperationTypeEnum.ADD
@@ -60,7 +60,7 @@ public class IndexFileLoader {
 
         //加载推广单元和广告创意的关联关系
         List<String> creativeRelationUnitStrings = loadExportedData(
-                String.format("%s%s", FileConstant.DATA_ROOT_DIR, FileConstant.AD_CREATIVE_RELARION_UNIT)
+                String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_CREATIVE_RELARION_UNIT)
         );
         creativeRelationUnitStrings.forEach(r -> AdLevelDataHandler.handleLevel3Index(
                 JSON.parseObject(r, AdCreativeRelationUnitTable.class), OperationTypeEnum.ADD
@@ -68,7 +68,7 @@ public class IndexFileLoader {
 
         //加载推广单元下的地域限制索引
         List<String> unitDistrictStrings = loadExportedData(
-                String.format("%s%s", FileConstant.DATA_ROOT_DIR, FileConstant.AD_UNIT_DISTRICT)
+                String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT_DISTRICT)
         );
         unitDistrictStrings.forEach(d -> AdLevelDataHandler.handleLevel4Index(
                 JSON.parseObject(d, AdUnitDistrictTable.class), OperationTypeEnum.ADD
@@ -76,7 +76,7 @@ public class IndexFileLoader {
 
         //加载推广单元下的关键词限制索引
         List<String> unitKeywordStrings = loadExportedData(
-                String.format("%s%s", FileConstant.DATA_ROOT_DIR, FileConstant.AD_UNIT_KEYWORD)
+                String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT_KEYWORD)
         );
         unitKeywordStrings.forEach(k -> AdLevelDataHandler.handleLevel4Index(
                 JSON.parseObject(k, AdUnitKeywordTable.class), OperationTypeEnum.ADD
@@ -84,7 +84,7 @@ public class IndexFileLoader {
 
         //加载推广单元下的兴趣限制索引
         List<String> unitHobbyStrings = loadExportedData(
-                String.format("%s%s", FileConstant.DATA_ROOT_DIR, FileConstant.AD_UNIT_HOBBY)
+                String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT_HOBBY)
         );
         unitHobbyStrings.forEach(h -> AdLevelDataHandler.handleLevel4Index(
                 JSON.parseObject(h, AdUnitHobbyTable.class), OperationTypeEnum.ADD
