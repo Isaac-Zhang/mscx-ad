@@ -1,6 +1,6 @@
 package com.sxzhongf.ad.service.controller;
 
-import com.sxzhongf.ad.common.export.DConstant;
+import com.sxzhongf.ad.common.export.FileConstant;
 import com.sxzhongf.ad.common.vo.CommonResponse;
 import com.sxzhongf.ad.service.impl.ExportDataServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -31,14 +31,14 @@ public class ExportDataController {
     @GetMapping("/plan")
     public CommonResponse exportAdPlans() {
 
-        exportDataService.exportAdPlanTable(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_PLAN));
+        exportDataService.exportAdPlanTable(String.format("%s%s", FileConstant.DATA_ROOT_DIR, FileConstant.AD_PLAN));
         exportDataService.exportAdCreativeRelationUnit(String.format("%s%s"
-                , DConstant.DATA_ROOT_DIR, DConstant.AD_CREATIVE_RELARION_UNIT));
-        exportDataService.exportAdCreativeTable(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_CREATIVE));
-        exportDataService.exportAdUnitDistrict(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT_DISTRICT));
-        exportDataService.exportAdUnitHobby(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT_HOBBY));
-        exportDataService.exportAdUnitKeywords(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT_KEYWORD));
-        exportDataService.exportAdUnitTable(String.format("%s%s", DConstant.DATA_ROOT_DIR, DConstant.AD_UNIT));
+                , FileConstant.DATA_ROOT_DIR, FileConstant.AD_CREATIVE_RELARION_UNIT));
+        exportDataService.exportAdCreativeTable(String.format("%s%s", FileConstant.DATA_ROOT_DIR, FileConstant.AD_CREATIVE));
+        exportDataService.exportAdUnitDistrict(String.format("%s%s", FileConstant.DATA_ROOT_DIR, FileConstant.AD_UNIT_DISTRICT));
+        exportDataService.exportAdUnitHobby(String.format("%s%s", FileConstant.DATA_ROOT_DIR, FileConstant.AD_UNIT_HOBBY));
+        exportDataService.exportAdUnitKeywords(String.format("%s%s", FileConstant.DATA_ROOT_DIR, FileConstant.AD_UNIT_KEYWORD));
+        exportDataService.exportAdUnitTable(String.format("%s%s", FileConstant.DATA_ROOT_DIR, FileConstant.AD_UNIT));
         return new CommonResponse();
     }
 }

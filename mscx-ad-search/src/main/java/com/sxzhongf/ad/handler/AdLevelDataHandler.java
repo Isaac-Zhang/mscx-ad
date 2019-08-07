@@ -52,6 +52,7 @@ public class AdLevelDataHandler {
 
         //调用通用方法处理，使用IndexDataTableUtils#of来获取索引的实现类bean
         handleBinlogEvent(
+                // 在前一节我们实现了一个索引工具类，来获取注入的bean对象
                 IndexDataTableUtils.of(AdPlanIndexAwareImpl.class),
                 planIndexObject.getPlanId(),
                 planIndexObject,

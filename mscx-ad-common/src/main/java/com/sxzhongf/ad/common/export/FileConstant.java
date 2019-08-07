@@ -1,12 +1,12 @@
 package com.sxzhongf.ad.common.export;
 
 /**
- * DConstant for 定义索引与存储对象的常量关系说明
+ * FileConstant for 定义索引与存储对象的常量关系说明
  *
  * @author <a href="mailto:magicianisaac@gmail.com">Isaac.Zhang | 若初</a>
  * @since 2019/6/25
  */
-public class DConstant {
+public class FileConstant {
 
     public static final String DATA_ROOT_DIR = "/Users/zhangpan/Documents/promotion/data/mysql/";
 
