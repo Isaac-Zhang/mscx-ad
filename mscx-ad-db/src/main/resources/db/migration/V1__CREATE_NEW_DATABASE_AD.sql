@@ -68,7 +68,7 @@ CREATE TABLE `ad_unit_keyword` (
 CREATE TABLE `ad_unit_hobby` (
   `hobby_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `unit_id` INT(11) NOT NULL COMMENT '推广单元 id',
-  `it_tag` VARCHAR(30) NOT NULL COMMENT '兴趣标签',
+  `hobby_tag` VARCHAR(30) NOT NULL COMMENT '兴趣标签',
   PRIMARY KEY (`hobby_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='推广单元兴趣 Feature';
 
