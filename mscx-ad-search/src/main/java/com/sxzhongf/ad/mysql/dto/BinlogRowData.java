@@ -21,6 +21,7 @@ public class BinlogRowData {
 
     private List<Map<String, String>> before;
 
+    //只有update操作才会有
     private List<Map<String, String>> after;
 
 }
