@@ -99,8 +99,8 @@ public class TemplateHolder {
                         String colName = rs.getString("COLUMN_NAME");
 
                         if ((null != updateFields && updateFields.contains(colName))
-                                || (null != updateFields && updateFields.contains(colName))
-                                || (null != updateFields && updateFields.contains(colName))) {
+                                || (null != insertFields && insertFields.contains(colName))
+                                || (null != deleteFields && deleteFields.contains(colName))) {
                             table.getPosMap().put(pos - 1, colName);
                         }
                         return null;

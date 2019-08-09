@@ -22,10 +22,12 @@ public class TableTemplate {
     private String tableName;
     private String level;
 
+    //操作类型 -> 多列
     private Map<OperationTypeEnum, List<String>> opTypeFieldSetMap = new HashMap<>();
 
     /**
      * Binlog日志中 字段索引 -> 字段名称 的一个转换映射
+     * 因为binlog中不会显示更新的列名是什么，它只会展示字段的索引，因此我们需要实现一次转换
      */
     private Map<Integer, String> posMap = new HashMap<>();
 }
