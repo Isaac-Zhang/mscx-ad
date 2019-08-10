@@ -1,8 +1,6 @@
 package com.sxzhongf.ad.service;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -38,7 +36,7 @@ public class TestTable {
         int colwidth = (int) ((imageWidth - 20) / totalcol);
 
         image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
-        Graphics graphics = image.getGraphics();
+        Graphics2D graphics = image.createGraphics();
 
         graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, imageWidth, imageHeight);
@@ -73,12 +71,12 @@ public class TestTable {
         //设置字体
         Font font = new Font("宋体", Font.BOLD, 20);
         graphics.setFont(font);
-
+        graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
         //写标题
         String title = "蓝色层次设计半身裙";
         graphics.drawString(title, imageWidth / 3 + startWidth, startHeight + rowheight - 10);
 
-        font = new Font("宋体", Font.BOLD, 18);
+        font = new Font("宋体", Font.BOLD, 20);
         graphics.setFont(font);
 
         //写入表头
@@ -88,7 +86,7 @@ public class TestTable {
         }
 
         //设置字体
-        font = new Font("宋体", Font.PLAIN, 16);
+        font = new Font("宋体", Font.PLAIN, 20);
         graphics.setFont(font);
         String[][] cellsValue = {
                 {"肩宽", "70", "-", "-", "-", "-", "-", "-"},
