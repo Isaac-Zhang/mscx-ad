@@ -41,6 +41,6 @@ adconf:
     username: root
     password: 12345678
     binlogName: ""
-    position: -1
+    position: -1 # 从当前位置开始监听
   kafka:
     topic: ad-search-mysql-data

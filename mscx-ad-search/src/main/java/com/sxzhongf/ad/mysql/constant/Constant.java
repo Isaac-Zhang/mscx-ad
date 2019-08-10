@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Constant for TODO
+ * Constant for 各个列名称的java类，方便我们后期对数据表的CUD操作
  *
  * @author <a href="mailto:magicianisaac@gmail.com">Isaac.Zhang | 若初</a>
  * @since 2019/6/27
