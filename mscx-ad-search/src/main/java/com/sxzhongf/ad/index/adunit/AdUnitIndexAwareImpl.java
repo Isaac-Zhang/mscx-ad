@@ -4,8 +4,9 @@ import com.sxzhongf.ad.index.IIndexAware;
 import com.sxzhongf.ad.index.adplan.AdPlanIndexObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -25,6 +26,39 @@ public class AdUnitIndexAwareImpl implements IIndexAware<Long, AdUnitIndexObject
      */
     static {
         objectMap = new ConcurrentHashMap<>();
+    }
+
+    /**
+     * 过滤当前是否存在满足positionType的UnitIds
+     */
+    public Set<Long> match(Integer positionType) {
+        Set<Long> adUnitIds = new HashSet<>();
+        objectMap.forEach((k, v) -> {
+            if (AdUnitIndexObject.isAdSlotType(positionType, v.getPositionType())) {
+                adUnitIds.add(k);
+            }
+        });
+        return adUnitIds;
+    }
+
+    /**
+     * 根据UnitIds查询AdUnit list
+     */
+    public List<AdUnitIndexObject> fetch(Collection<Long> adUnitIds) {
+        if (CollectionUtils.isEmpty(adUnitIds)) {
+            return Collections.EMPTY_LIST;
+        }
+        List<AdUnitIndexObject> result = new ArrayList<>();
+        adUnitIds.forEach(id -> {
+            AdUnitIndexObject object = get(id);
+            if (null == object) {
+                log.error("AdUnitIndexObject does not found:{}", id);
+                return;
+            }
+            result.add(object);
+        });
+
+        return result;
     }
 
     @Override
