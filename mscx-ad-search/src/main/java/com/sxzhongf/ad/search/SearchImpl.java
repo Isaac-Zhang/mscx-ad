@@ -1,7 +1,6 @@
 package com.sxzhongf.ad.search;
 
 import com.alibaba.fastjson.JSON;
-import com.sxzhongf.ad.common.export.table.AdCreativeTable;
 import com.sxzhongf.ad.index.CommonStatus;
 import com.sxzhongf.ad.index.IndexDataTableUtils;
 import com.sxzhongf.ad.index.adunit.AdUnitIndexAwareImpl;

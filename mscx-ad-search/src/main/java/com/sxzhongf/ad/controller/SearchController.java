@@ -5,6 +5,9 @@ import com.sxzhongf.ad.common.annotation.IgnoreResponseAdvice;
 import com.sxzhongf.ad.common.vo.CommonResponse;
 import com.sxzhongf.ad.feign.client.vo.AdPlanGetRequestVO;
 import com.sxzhongf.ad.feign.client.vo.AdPlanVO;
+import com.sxzhongf.ad.search.ISearch;
+import com.sxzhongf.ad.search.vo.SearchRequest;
+import com.sxzhongf.ad.search.vo.SearchResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -26,9 +29,12 @@ public class SearchController {
 
     private final RestTemplate restTemplate;
 
+    private final ISearch search;
+
     @Autowired
-    public SearchController(RestTemplate restTemplate) {
+    public SearchController(RestTemplate restTemplate, ISearch search) {
         this.restTemplate = restTemplate;
+        this.search = search;
     }
 
     @PostMapping(path = "/plan/get-ribbon")
@@ -48,5 +54,11 @@ public class SearchController {
         );
 
         return commonResponse;
+    }
+
+    @PostMapping("/fetchAd")
+    public SearchResponse fetchAdCreative(@RequestBody SearchRequest request) {
+        log.info("ad-serach: fetchAd ->{}", JSON.toJSONString(request));
+        return search.fetchAds(request);
     }
 }
