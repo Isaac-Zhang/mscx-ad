@@ -66,10 +66,11 @@ public class SearchImpl implements ISearch {
 
                 targetUnitIdSet = adUnitIdSet;
             } else {
-                getOrRelationUnitIds(adUnitIdSet, keywordFeature, hobbyFeatrue, districtFeature);
+                targetUnitIdSet = getOrRelationUnitIds(adUnitIdSet, keywordFeature, hobbyFeatrue, districtFeature);
             }
             //获取 推广计划 对象list
-            List<AdUnitIndexObject> unitIndexObjects = IndexDataTableUtils.of(AdUnitIndexAwareImpl.class).fetch(adUnitIdSet);
+            List<AdUnitIndexObject> unitIndexObjects = IndexDataTableUtils.of(AdUnitIndexAwareImpl.class)
+                                                                          .fetch(targetUnitIdSet);
             //根据状态过滤数据
             filterAdUnitAndPlanStatus(unitIndexObjects, CommonStatus.VALID);
 
@@ -84,11 +85,13 @@ public class SearchImpl implements ISearch {
             filterCreativeByAdSlot(creativeIndexObjects, adSlot.getWidth(), adSlot.getHeight(), adSlot.getType());
 
             //一个广告位可以展示多个广告，也可以仅展示一个广告，具体根据业务来定
-
+            adSlotRelationAds.put(
+                    adSlot.getAdSlotCode(),
+                    buildCreativeResponse(creativeIndexObjects)
+            );
         }
 
-
-        return null;
+        return response;
     }
 
     /**
