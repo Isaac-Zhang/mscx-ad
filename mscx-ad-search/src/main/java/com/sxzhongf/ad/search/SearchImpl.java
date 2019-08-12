@@ -1,9 +1,13 @@
 package com.sxzhongf.ad.search;
 
+import com.sxzhongf.ad.common.export.table.AdCreativeTable;
 import com.sxzhongf.ad.index.CommonStatus;
 import com.sxzhongf.ad.index.IndexDataTableUtils;
 import com.sxzhongf.ad.index.adunit.AdUnitIndexAwareImpl;
 import com.sxzhongf.ad.index.adunit.AdUnitIndexObject;
+import com.sxzhongf.ad.index.creative.CreativeIndexAwareImpl;
+import com.sxzhongf.ad.index.creative.CreativeIndexObject;
+import com.sxzhongf.ad.index.creative_relation_unit.CreativeRelationUnitIndexAwareImpl;
 import com.sxzhongf.ad.index.district.UnitDistrictIndexAwareImpl;
 import com.sxzhongf.ad.index.hobby.UnitHobbyIndexAwareImpl;
 import com.sxzhongf.ad.index.keyword.UnitKeywordIndexAwareImpl;
@@ -68,6 +72,18 @@ public class SearchImpl implements ISearch {
             List<AdUnitIndexObject> unitIndexObjects = IndexDataTableUtils.of(AdUnitIndexAwareImpl.class).fetch(adUnitIdSet);
             //根据状态过滤数据
             filterAdUnitAndPlanStatus(unitIndexObjects, CommonStatus.VALID);
+
+            //获取 推广创意 id list
+            List<Long> creativeIds = IndexDataTableUtils.of(CreativeRelationUnitIndexAwareImpl.class)
+                                                        .selectAdCreativeIds(unitIndexObjects);
+            //根据 推广创意ids获取推广创意
+            List<CreativeIndexObject> creativeIndexObjects = IndexDataTableUtils.of(CreativeIndexAwareImpl.class)
+                                                                                .fetch(creativeIds);
+
+            //根据 广告位adslot 实现对创意数据的过滤
+            filterCreativeByAdSlot(creativeIndexObjects, adSlot.getWidth(), adSlot.getHeight(), adSlot.getType());
+
+            //一个广告位可以展示多个广告，也可以仅展示一个广告，具体根据业务来定
 
         }
 
@@ -160,6 +176,51 @@ public class SearchImpl implements ISearch {
                 unitIndexObjects,
                 unitIndexObject -> unitIndexObject.getUnitStatus().equals(status.getStatus()) &&
                         unitIndexObject.getAdPlanIndexObject().getPlanStatus().equals(status.getStatus())
+        );
+    }
+
+    /**
+     * 根据广告位类型以及参数获取展示的合适广告信息
+     *
+     * @param creativeIndexObjects 所有广告创意
+     * @param width                广告位width
+     * @param height               广告位height
+     */
+    private void filterCreativeByAdSlot(List<CreativeIndexObject> creativeIndexObjects,
+                                        Integer width,
+                                        Integer height,
+                                        List<Integer> type) {
+        if (CollectionUtils.isEmpty(creativeIndexObjects)) return;
+
+        CollectionUtils.filter(
+                creativeIndexObjects,
+                creative -> {
+                    //审核状态必须是通过
+                    return creative.getAuditStatus().equals(CommonStatus.VALID.getStatus())
+                            && creative.getWidth().equals(width)
+                            && creative.getHeight().equals(height)
+                            && type.contains(creative.getType());
+                }
+        );
+    }
+
+    /**
+     * 从创意列表中随机获取一条创意广告返回出去
+     *
+     * @param creativeIndexObjects 创意广告list
+     */
+    private List<SearchResponse.Creative> buildCreativeResponse(List<CreativeIndexObject> creativeIndexObjects) {
+        if (CollectionUtils.isEmpty(creativeIndexObjects)) return Collections.EMPTY_LIST;
+
+        //随机获取一个广告创意，也可以实现优先级排序，也可以根据权重值等等，具体根据业务
+        CreativeIndexObject randomObject = creativeIndexObjects.get(
+                Math.abs(new Random().nextInt()) % creativeIndexObjects.size()
+        );
+        //List<SearchResponse.Creative> result = new ArrayList<>();
+        //result.add(SearchResponse.convert(randomObject));
+
+        return Collections.singletonList(
+                SearchResponse.convert(randomObject)
         );
     }
 }
