@@ -1,5 +1,6 @@
 package com.sxzhongf.ad.search;
 
+import com.sxzhongf.ad.index.CommonStatus;
 import com.sxzhongf.ad.index.IndexDataTableUtils;
 import com.sxzhongf.ad.index.adunit.AdUnitIndexAwareImpl;
 import com.sxzhongf.ad.index.adunit.AdUnitIndexObject;
@@ -63,6 +64,11 @@ public class SearchImpl implements ISearch {
             } else {
                 getOrRelationUnitIds(adUnitIdSet, keywordFeature, hobbyFeatrue, districtFeature);
             }
+            //获取 推广计划 对象list
+            List<AdUnitIndexObject> unitIndexObjects = IndexDataTableUtils.of(AdUnitIndexAwareImpl.class).fetch(adUnitIdSet);
+            //根据状态过滤数据
+            filterAdUnitAndPlanStatus(unitIndexObjects, CommonStatus.VALID);
+
         }
 
 
@@ -141,5 +147,19 @@ public class SearchImpl implements ISearch {
                     }
             );
         }
+    }
+
+    /**
+     * 根据状态信息过滤数据
+     */
+    private void filterAdUnitAndPlanStatus(List<AdUnitIndexObject> unitIndexObjects, CommonStatus status) {
+        if (CollectionUtils.isEmpty(unitIndexObjects)) return;
+
+        //同时判断推广单元和推广计划的状态
+        CollectionUtils.filter(
+                unitIndexObjects,
+                unitIndexObject -> unitIndexObject.getUnitStatus().equals(status.getStatus()) &&
+                        unitIndexObject.getAdPlanIndexObject().getPlanStatus().equals(status.getStatus())
+        );
     }
 }

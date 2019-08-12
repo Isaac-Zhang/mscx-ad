@@ -28,7 +28,7 @@ public class CreativeIndexAwareImpl implements IIndexAware<Long, CreativeIndexOb
     /**
      * 根据ids获取创意list
      */
-    public List<CreativeIndexObject> findAllByIds(Collection<Long> ids) {
+    public List<CreativeIndexObject> fetch(Collection<Long> ids) {
         if (CollectionUtils.isEmpty(ids)) return Collections.emptyList();
         List<CreativeIndexObject> result = new ArrayList<>();
 
