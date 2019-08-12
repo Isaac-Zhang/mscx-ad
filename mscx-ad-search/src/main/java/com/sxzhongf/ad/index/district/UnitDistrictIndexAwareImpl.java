@@ -1,14 +1,18 @@
 package com.sxzhongf.ad.index.district;
 
 import com.sxzhongf.ad.index.IIndexAware;
+import com.sxzhongf.ad.search.vo.feature.DistrictFeature;
 import com.sxzhongf.ad.utils.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.stream.Collectors;
 
 /**
  * UnitDistrictIndexAwareImpl for 推广单元<->地域索引实现类
@@ -74,5 +78,25 @@ public class UnitDistrictIndexAwareImpl implements IIndexAware<String, Set<Long>
         }
 
         log.info("UnitDistrictIndexAwareImpl::after delete:{}", unitRelationDistrictsMap);
+    }
+
+    /**
+     * 查询参数中是否存在匹配的广告地域信息
+     */
+    public boolean match(Long adUnitId, List<DistrictFeature.ProvinceAndCity> districts) {
+        if (unitRelationDistrictsMap.containsKey(adUnitId) && CollectionUtils.isNotEmpty(unitRelationDistrictsMap.get(adUnitId))) {
+            Set<String> unitDistricts = unitRelationDistrictsMap.get(adUnitId);
+
+            //id为province+city拼接
+            List<String> targetDistricts = districts.stream()
+                                                    .map(d -> {
+                                                        return com.sxzhongf.ad.common.utils.CommonUtils.stringConcat(
+                                                                d.getProvince(), d.getCity()
+                                                        );
+                                                    }).collect(Collectors.toList());
+            return CollectionUtils.isSubCollection(targetDistricts, unitDistricts);
+        }
+
+        return false;
     }
 }
