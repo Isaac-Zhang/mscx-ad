@@ -1,13 +1,13 @@
 package com.sxzhongf.ad.index.creative_relation_unit;
 
 import com.sxzhongf.ad.index.IIndexAware;
+import com.sxzhongf.ad.index.adunit.AdUnitIndexObject;
 import com.sxzhongf.ad.utils.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -97,5 +97,20 @@ public class CreativeRelationUnitIndexAwareImpl implements IIndexAware<String, C
         log.info("CreativeRelationUnitIndexAwareImpl:: after add :{}", objectMap);
     }
 
+    /**
+     * 通过推广单元id获取推广创意id
+     */
+    public List<Long> selectAdCreativeIds(List<AdUnitIndexObject> unitIndexObjects) {
+        if (CollectionUtils.isEmpty(unitIndexObjects)) return Collections.emptyList();
 
+        //获取要返回的广告创意ids
+        List<Long> result = new ArrayList<>();
+        for (AdUnitIndexObject unitIndexObject : unitIndexObjects) {
+            //根据推广单元id获取推广创意
+            Set<Long> adCreativeIds = unitRelationCreativeMap.get(unitIndexObject.getUnitId());
+            if (CollectionUtils.isNotEmpty(adCreativeIds)) result.addAll(adCreativeIds);
+        }
+
+        return result;
+    }
 }
