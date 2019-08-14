@@ -19,7 +19,7 @@ public class KafkaDemoProducer {
     //初始化producer
     static {
         Properties properties = new Properties();
-        properties.put("bootstrap.server", "127.0.0.1:9092");// kafka broker list addrs
+        properties.put("bootstrap.servers", "localhost:9092");// kafka broker list addrs
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
@@ -35,6 +35,7 @@ public class KafkaDemoProducer {
                 "mscx-kafka-demo", "demo-key", "demo-value"
         );
 
+        //不检测发送结果，会造成消息有丢失的风险
         producer.send(record);
         producer.close();
     }
