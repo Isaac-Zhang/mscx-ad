@@ -1,8 +1,10 @@
 package com.sxzhongf.kafkademo;
 
+import org.apache.kafka.clients.consumer.CommitFailedException;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.errors.FencedInstanceIdException;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -34,7 +36,7 @@ public class KafkaDemoConsumer {
      */
     private static void consumeMessageAutoCommit() {
 
-        //设置 kafka 位移自动提交开启
+        //设置 kafka 位移自动提交开启,默认5s提交一次
         properties.put("enable.auto.commit", true);
         consumer = new KafkaConsumer<String, String>(properties);
 
@@ -64,7 +66,82 @@ public class KafkaDemoConsumer {
         }
     }
 
+    /**
+     * 手动提交同步位移
+     */
+    private static void consumeMessageControlSyncCommit() {
+        // 关闭自动字体位移
+        properties.put("auto.commit.offset", false);
+        consumer = new KafkaConsumer<String, String>(properties);
+
+        //订阅一个指定的topic
+        consumer.subscribe(Collections.singleton("mscx-kafka-demo-partitioner"));
+        while (true) {
+            boolean tag = true;
+
+            // 消费消息
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+            for (ConsumerRecord<String, String> record : records) {
+                System.out.printf("Topic : %s, Partition: %s, Offset : %s , key : %s, value : %s\n"
+                        , record.topic(), record.partition(), record.offset(), record.key(), record.value());
+
+                if (record.value().equals("done")) {
+                    tag = false;
+                }
+            }
+            try {
+                // 会造成线程阻塞，尽量少提交
+                consumer.commitSync();
+            } catch (CommitFailedException exception) {
+                System.err.println(exception.getMessage());
+            }
+
+            //获取消息是否已经消费结束
+            if (!tag) break;
+        }
+        consumer.close();
+    }
+
+    /**
+     * 手动提交同步位移
+     */
+    private static void consumeMessageControlAsyncCommit() {
+        // 关闭自动字体位移
+        properties.put("auto.commit.offset", false);
+        consumer = new KafkaConsumer<String, String>(properties);
+
+        //订阅一个指定的topic
+        consumer.subscribe(Collections.singleton("mscx-kafka-demo-partitioner"));
+        while (true) {
+            boolean tag = true;
+
+            // 消费消息
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+            for (ConsumerRecord<String, String> record : records) {
+                System.out.printf("Topic : %s, Partition: %s, Offset : %s , key : %s, value : %s\n"
+                        , record.topic(), record.partition(), record.offset(), record.key(), record.value());
+
+                if (record.value().equals("done")) {
+                    tag = false;
+                }
+            }
+            try {
+                //异步提交
+                consumer.commitAsync();
+            } catch (FencedInstanceIdException exception) {
+                System.err.println(exception.getMessage());
+            }
+
+            //获取消息是否已经消费结束
+            if (!tag) break;
+        }
+        consumer.close();
+    }
+
+
     public static void main(String[] args) {
-        consumeMessageAutoCommit();
+//        consumeMessageAutoCommit();
+//        consumeMessageControlSyncCommit();
+        consumeMessageControlAsyncCommit();
     }
 }
