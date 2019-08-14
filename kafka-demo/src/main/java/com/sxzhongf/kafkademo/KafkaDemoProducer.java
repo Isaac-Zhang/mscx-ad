@@ -3,8 +3,10 @@ package com.sxzhongf.kafkademo;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.util.Properties;
+import java.util.concurrent.Future;
 
 /**
  * KafkaDemoProducer for 测试kafka 原生API producer
@@ -40,7 +42,25 @@ public class KafkaDemoProducer {
         producer.close();
     }
 
-    public static void main(String[] args) {
-        sendMessageIgnoreResult();
+    /**
+     * 测试同步发送消息
+     */
+    private static void sendMessageSync() throws Exception {
+        ProducerRecord<String, String> record = new ProducerRecord<>(
+                "mscx-kafka-demo", "demo-sync-key", "demo-sync-value"
+        );
+
+        Future<RecordMetadata> recordMetadataFuture = producer.send(record);
+        RecordMetadata recordMetadata = recordMetadataFuture.get();
+
+        System.out.printf("Topic : %s, Partition: %s, Offset : %s"
+                , recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
+
+        producer.close();
+    }
+
+    public static void main(String[] args) throws Exception {
+//        sendMessageIgnoreResult();
+        sendMessageSync();
     }
 }
