@@ -183,6 +183,38 @@ public class KafkaDemoConsumer {
         consumer.close();
     }
 
+    /**
+     * 混合同步和异步处理消息
+     */
+    private static void consumeMessageMixed() {
+        // 关闭自动字体位移
+        properties.put("auto.commit.offset", false);
+        consumer = new KafkaConsumer<>(properties);
+
+        //订阅一个指定的topic
+        consumer.subscribe(Collections.singleton("mscx-kafka-demo-partitioner"));
+        try {
+            while (true) {
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+                for (ConsumerRecord<String, String> record : records) {
+                    System.out.printf("consumeMessageControlAsyncCommitWithCallback :: Topic : %s, Partition: %s, Offset : %s , key : %s, value : %s\n"
+                            , record.topic(), record.partition(), record.offset(), record.key(), record.value());
+                }
+                consumer.commitAsync();
+            }
+        } catch (Exception e) {
+            //记录异步消费处理错误
+            System.err.println("Async committed error." + e.getMessage());
+        } finally {
+            try {
+                //如果异步提交失败，使用同步提交最大可能保证数据消费成功。
+                consumer.commitSync();
+            } finally {
+                consumer.close();
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
 //        consumeMessageAutoCommit();
