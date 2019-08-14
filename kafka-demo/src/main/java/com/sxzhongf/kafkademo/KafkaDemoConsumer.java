@@ -127,6 +127,10 @@ public class KafkaDemoConsumer {
             }
             try {
                 //异步提交，不会重试。。
+                //多个异步commit 交替提交，有可能造成offset的互相覆盖，会造成消息有可能重复消费
+                //必须 commit1 和 commit2,commit1 的offset 是100，commit2 的offset 是150，
+                //当commit1 异步提交失败，commit2异步提交成功，根据offset = 150，然后commitAsync()如果实现了重试，
+                //重试的时候,commit1又提交成功，offset -> 150 -> 100,offset回退，就会造成消息重复消费。
                 consumer.commitAsync();
             } catch (FencedInstanceIdException exception) {
                 System.err.println(exception.getMessage());
