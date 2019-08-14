@@ -17,7 +17,7 @@ public class ProducerDemoCallback implements Callback {
             System.out.println(exception.getStackTrace());
             return;
         }
-        System.out.printf("Asyn Topic : %s, Partition: %s, Offset : %s"
+        System.out.printf("Asyn Topic : %s, Partition: %s, Offset : %s \n"
                 , recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
 
     }

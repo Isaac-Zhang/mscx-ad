@@ -25,6 +25,9 @@ public class KafkaDemoProducer {
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
+        //配置应用自定义partitioner
+        properties.put("partitioner.class", "com.sxzhongf.kafkademo.CustomKafkaPartitioner");
+
         producer = new KafkaProducer<String, String>(properties);
     }
 
@@ -71,9 +74,34 @@ public class KafkaDemoProducer {
         producer.close();
     }
 
+    /**
+     * 测试自定义 partitioner 异步发送消息处理
+     */
+    private static void sendMessagePartitionerAsynCallback() {
+        ProducerRecord<String, String> record = new ProducerRecord<>(
+                "mscx-kafka-demo-partitioner", "demo-partitioner-key", "demo-partitioner-value"
+        );
+
+        producer.send(record, new ProducerDemoCallback());
+
+        record = new ProducerRecord<>(
+                "mscx-kafka-demo-partitioner-1", "demo-partitioner-key-1", "demo-partitioner-value-1"
+        );
+
+        producer.send(record, new ProducerDemoCallback());
+
+        record = new ProducerRecord<>(
+                "mscx-kafka-demo-partitioner-2", "demo-partitioner-key-2", "demo-partitioner-value-2"
+        );
+
+        producer.send(record, new ProducerDemoCallback());
+        producer.close();
+    }
+
     public static void main(String[] args) throws Exception {
 //        sendMessageIgnoreResult();
 //        sendMessageSync();
-        sendMessageAsynCallback();
+//        sendMessageAsynCallback();
+        sendMessagePartitionerAsynCallback();
     }
 }
