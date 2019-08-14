@@ -1,13 +1,12 @@
 package com.sxzhongf.kafkademo;
 
-import org.apache.kafka.clients.consumer.CommitFailedException;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.errors.FencedInstanceIdException;
 
 import java.time.Duration;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -118,7 +117,7 @@ public class KafkaDemoConsumer {
             // 消费消息
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
             for (ConsumerRecord<String, String> record : records) {
-                System.out.printf("Topic : %s, Partition: %s, Offset : %s , key : %s, value : %s\n"
+                System.out.printf("consumeMessageControlAsyncCommit :: Topic : %s, Partition: %s, Offset : %s , key : %s, value : %s\n"
                         , record.topic(), record.partition(), record.offset(), record.key(), record.value());
 
                 if (record.value().equals("done")) {
@@ -132,6 +131,48 @@ public class KafkaDemoConsumer {
                 //当commit1 异步提交失败，commit2异步提交成功，根据offset = 150，然后commitAsync()如果实现了重试，
                 //重试的时候,commit1又提交成功，offset -> 150 -> 100,offset回退，就会造成消息重复消费。
                 consumer.commitAsync();
+            } catch (FencedInstanceIdException exception) {
+                System.err.println(exception.getMessage());
+            }
+
+            //获取消息是否已经消费结束
+            if (!tag) break;
+        }
+        consumer.close();
+    }
+
+    /**
+     * 实现异步提交，如果失败，做回调处理
+     */
+    private static void consumeMessageControlAsyncCommitWithCallback() {
+        // 关闭自动字体位移
+        properties.put("auto.commit.offset", false);
+        consumer = new KafkaConsumer<>(properties);
+
+        //订阅一个指定的topic
+        consumer.subscribe(Collections.singleton("mscx-kafka-demo-partitioner"));
+        while (true) {
+            boolean tag = true;
+
+            // 消费消息
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+            for (ConsumerRecord<String, String> record : records) {
+                System.out.printf("consumeMessageControlAsyncCommitWithCallback :: Topic : %s, Partition: %s, Offset : %s , key : %s, value : %s\n"
+                        , record.topic(), record.partition(), record.offset(), record.key(), record.value());
+
+                if (record.value().equals("done")) {
+                    tag = false;
+                }
+            }
+            try {
+                //实现异步提交，如果失败，做回调处理
+                consumer.commitAsync((offsets, exception) -> {
+                    if (null != exception) {
+                        //TIPS: 异步处理不能重试！！！使用offsets信息对异常进行业务修复处理
+                        offsets.forEach((key, value) -> System.out.printf("offsets: offset=%s,", value.offset()));
+                        System.err.println("failed for offsets: " + exception.getMessage());
+                    }
+                });
             } catch (FencedInstanceIdException exception) {
                 System.err.println(exception.getMessage());
             }
