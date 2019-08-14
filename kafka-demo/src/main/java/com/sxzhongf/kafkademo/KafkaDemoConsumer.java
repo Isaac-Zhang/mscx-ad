@@ -38,7 +38,7 @@ public class KafkaDemoConsumer {
 
         //设置 kafka 位移自动提交开启,默认5s提交一次
         properties.put("enable.auto.commit", true);
-        consumer = new KafkaConsumer<String, String>(properties);
+        consumer = new KafkaConsumer<>(properties);
 
         //订阅一个指定的topic
         consumer.subscribe(Collections.singleton("mscx-kafka-demo-partitioner"));
@@ -72,7 +72,7 @@ public class KafkaDemoConsumer {
     private static void consumeMessageControlSyncCommit() {
         // 关闭自动字体位移
         properties.put("auto.commit.offset", false);
-        consumer = new KafkaConsumer<String, String>(properties);
+        consumer = new KafkaConsumer<>(properties);
 
         //订阅一个指定的topic
         consumer.subscribe(Collections.singleton("mscx-kafka-demo-partitioner"));
@@ -90,7 +90,7 @@ public class KafkaDemoConsumer {
                 }
             }
             try {
-                // 会造成线程阻塞，尽量少提交
+                // 会造成线程阻塞，尽量少提交，但是可以主动失败重试。
                 consumer.commitSync();
             } catch (CommitFailedException exception) {
                 System.err.println(exception.getMessage());
@@ -108,7 +108,7 @@ public class KafkaDemoConsumer {
     private static void consumeMessageControlAsyncCommit() {
         // 关闭自动字体位移
         properties.put("auto.commit.offset", false);
-        consumer = new KafkaConsumer<String, String>(properties);
+        consumer = new KafkaConsumer<>(properties);
 
         //订阅一个指定的topic
         consumer.subscribe(Collections.singleton("mscx-kafka-demo-partitioner"));
@@ -126,7 +126,7 @@ public class KafkaDemoConsumer {
                 }
             }
             try {
-                //异步提交
+                //异步提交，不会重试。。
                 consumer.commitAsync();
             } catch (FencedInstanceIdException exception) {
                 System.err.println(exception.getMessage());
