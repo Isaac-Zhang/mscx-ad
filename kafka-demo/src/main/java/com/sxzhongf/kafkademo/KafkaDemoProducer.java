@@ -59,8 +59,21 @@ public class KafkaDemoProducer {
         producer.close();
     }
 
+    /**
+     * 异步发送消息处理
+     */
+    private static void sendMessageAsynCallback() {
+        ProducerRecord<String, String> record = new ProducerRecord<>(
+                "mscx-kafka-demo", "demo-asyn-key", "demo-asyn-value"
+        );
+
+        producer.send(record, new ProducerDemoCallback());
+        producer.close();
+    }
+
     public static void main(String[] args) throws Exception {
 //        sendMessageIgnoreResult();
-        sendMessageSync();
+//        sendMessageSync();
+        sendMessageAsynCallback();
     }
 }
