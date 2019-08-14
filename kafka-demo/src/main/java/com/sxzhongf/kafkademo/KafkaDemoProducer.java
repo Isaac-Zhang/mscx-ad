@@ -85,13 +85,13 @@ public class KafkaDemoProducer {
         producer.send(record, new ProducerDemoCallback());
 
         record = new ProducerRecord<>(
-                "mscx-kafka-demo-partitioner-1", "demo-partitioner-key-1", "demo-partitioner-value-1"
+                "mscx-kafka-demo-partitioner", "demo-partitioner-key-1", "demo-partitioner-value-1"
         );
 
         producer.send(record, new ProducerDemoCallback());
 
         record = new ProducerRecord<>(
-                "mscx-kafka-demo-partitioner-2", "demo-partitioner-key-2", "demo-partitioner-value-2"
+                "mscx-kafka-demo-partitioner", "demo-partitioner-key-2", "demo-partitioner-value-2"
         );
 
         producer.send(record, new ProducerDemoCallback());
