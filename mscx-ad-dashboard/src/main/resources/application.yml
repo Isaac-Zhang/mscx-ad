@@ -1,0 +1,14 @@
+server:
+  port: 1234
+spring:
+  application:
+    name: mscx-ad-dashboard
+eureka:
+  client:
+    service-url:
+      defaultZone: http://server1:7777/eureka/,http://server2:8888/eureka/,http://server3:9999/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
