@@ -1,6 +1,7 @@
 package com.sxzhongf.ad.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.sxzhongf.ad.common.annotation.IgnoreResponseAdvice;
 import com.sxzhongf.ad.common.vo.CommonResponse;
 import com.sxzhongf.ad.feign.client.vo.AdPlanGetRequestVO;

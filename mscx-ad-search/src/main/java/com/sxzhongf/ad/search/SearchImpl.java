@@ -1,6 +1,7 @@
 package com.sxzhongf.ad.search;
 
 import com.alibaba.fastjson.JSON;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.sxzhongf.ad.index.CommonStatus;
 import com.sxzhongf.ad.index.IndexDataTableUtils;
 import com.sxzhongf.ad.index.adunit.AdUnitIndexAwareImpl;
@@ -33,6 +34,20 @@ import java.util.*;
 @Service
 @Slf4j
 public class SearchImpl implements ISearch {
+
+    /**
+     * 查询广告容错方法
+     *
+     * @param e 第二个参数可以不指定，如果需要跟踪错误，就指定上
+     * @return 返回一个空map 对象
+     */
+    public SearchResponse fetchAdsFallback(SearchRequest request, Throwable e) {
+
+        System.out.println("查询广告失败，进入容错降级 : %s" + e.getMessage());
+        return new SearchResponse().builder().adSlotRelationAds(Collections.emptyMap()).build();
+    }
+
+//    @HystrixCommand(fallbackMethod = "fetchAdsFallback")
     @Override
     public SearchResponse fetchAds(SearchRequest request) {
 
