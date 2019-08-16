@@ -1,10 +1,9 @@
-package com.sxzhongf.ad.service;
+package com.sxzhongf.ad;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
-import java.util.List;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
@@ -28,7 +27,7 @@ public class TestTable {
         //实际数据行数+标题+备注
         int totalrow = 10; //todo: 动态获取
         int totalcol = 8; //todo: 动态获取
-        int imageWidth = 500; //todo: 动态计算
+        int imageWidth = 1000; //todo: 动态计算
         int imageHeight = totalrow * 40 + 20;
         int rowheight = 40;
         int startHeight = 10;
@@ -42,11 +41,13 @@ public class TestTable {
         graphics.fillRect(0, 0, imageWidth, imageHeight);
 
 //        //设置字体
-        Font font = new Font("PingFangSC-Thin", Font.BOLD, 12);
+        Font font = new Font("PingFangSC-Thin", Font.BOLD, 16);
 
         graphics.setColor(new Color(51, 51, 51));
         graphics.setFont(font);
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
+        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL,RenderingHints.VALUE_STROKE_DEFAULT);
 
         //写入表头
         String[] headCells = {"尺码", "XXS", "XS", "S", "M", "L", "XL", "XXL"};
@@ -55,7 +56,7 @@ public class TestTable {
         }
 
         //设置字体
-        font = new Font("PingFangSC-Thin", Font.PLAIN, 12);
+        font = new Font("PingFangSC-Thin", Font.PLAIN, 16);
         graphics.setFont(font);
         String[][] cellsValue = {
                 {"肩宽", "70", "-", "-", "-", "-", "-", "-"},

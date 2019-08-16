@@ -14,7 +14,7 @@
     <groupId>com.sxzhongf</groupId>
     <artifactId>mscx-ad-common</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Common-Service</name>
+    <name>mscx-ad-common</name>
     <description>公共逻辑 and 帮助类</description>
 
     <dependencies>
@@ -37,14 +37,14 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
 
 
 </project>

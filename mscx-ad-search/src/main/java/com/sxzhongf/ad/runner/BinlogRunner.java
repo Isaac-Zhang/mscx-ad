@@ -16,8 +16,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class BinlogRunner implements CommandLineRunner {
 
+    private final CustomBinlogClient binlogClient;
+
     @Autowired
-    private CustomBinlogClient binlogClient;
+    public BinlogRunner(CustomBinlogClient binlogClient) {
+        this.binlogClient = binlogClient;
+    }
 
     @Override
     public void run(String... args) throws Exception {

@@ -10,7 +10,7 @@ import com.sxzhongf.ad.search.vo.SearchResponse;
  * @author <a href="mailto:magicianisaac@gmail.com">Isaac.Zhang | 若初</a>
  * @since 2019/7/1
  */
-@FunctionalInterface
+//@FunctionalInterface
 public interface ISearch {
 
     /**

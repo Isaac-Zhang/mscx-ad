@@ -9,6 +9,7 @@ import com.sxzhongf.ad.search.vo.media.App;
 import com.sxzhongf.ad.search.vo.media.Device;
 import com.sxzhongf.ad.search.vo.media.Geo;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ import java.util.List;
  * @since 2019/7/1
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class SearchRequest {
@@ -36,6 +38,7 @@ public class SearchRequest {
 
 
     @Data
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
     public static class RequestInfo {
@@ -48,6 +51,7 @@ public class SearchRequest {
     }
 
     @Data
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
     public static class FeatureInfo {

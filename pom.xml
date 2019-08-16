@@ -9,10 +9,10 @@
         <module>mscx-ad-zuul</module>
         <module>mscx-ad-gateway</module>
         <module>mscx-ad-common</module>
-        <module>mscx-ad-db</module>
-        <module>mscx-ad-sponsor</module>
-        <module>mscx-ad-search</module>
+        <!--<module>mscx-ad-db</module>-->
         <module>mscx-ad-feign-sdk</module>
+        <module>mscx-ad-search</module>
+        <module>mscx-ad-sponsor</module>
         <module>kafka-demo</module>
         <module>mscx-ad-dashboard</module>
     </modules>
@@ -79,13 +79,13 @@
         </repository>
     </repositories>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
 
 </project>
