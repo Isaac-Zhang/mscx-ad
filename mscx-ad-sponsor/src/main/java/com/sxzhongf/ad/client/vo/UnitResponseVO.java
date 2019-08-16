@@ -1,6 +1,7 @@
 package com.sxzhongf.ad.client.vo;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
  * @since 2019/6/20
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class UnitResponseVO {
