@@ -1,6 +1,7 @@
 package com.sxzhongf.ad.service;
 
 import com.alibaba.fastjson.JSON;
+import com.sxzhongf.ad.SponsorApplication;
 import com.sxzhongf.ad.common.exception.AdException;
 import com.sxzhongf.ad.client.vo.UserRequestVO;
 import com.sxzhongf.ad.client.vo.UserResponseVO;
@@ -18,7 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 2019/6/21
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(
+        classes = {SponsorApplication.class},
+        webEnvironment = SpringBootTest.WebEnvironment.NONE
+)
 public class UserServiceTest {
 
     @Autowired
