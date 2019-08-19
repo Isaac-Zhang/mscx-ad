@@ -106,7 +106,7 @@ public class SearchImpl implements ISearch {
             );
         }
 
-        log.info("请求返回结果:{} - {}", JSON.toJSONString(request), JSON.toJSONString(response));
+        log.info("请求返回结果:{} - {} \n", JSON.toJSONString(request), JSON.toJSONString(response));
         return response;
     }
 

@@ -4,6 +4,7 @@ import com.sxzhongf.ad.mysql.constant.OperationTypeEnum;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -23,7 +24,7 @@ public class ParseCustomTemplate {
      * key -> TableName
      * value -> {@link TableTemplate}
      */
-    private Map<String, TableTemplate> tableTemplateMap;
+    private Map<String, TableTemplate> tableTemplateMap = new HashMap<>();
 
     public static ParseCustomTemplate parse(BinlogTemplate _template) {
         ParseCustomTemplate template = new ParseCustomTemplate();
@@ -46,7 +47,7 @@ public class ParseCustomTemplate {
                         OperationTypeEnum.ADD,
                         operationTypeListMap,
                         ArrayList::new
-                ).add(column.getColumnName());
+                ).add(column.getColumn());
             }
 
             for (JsonTable.Column column : jsonTable.getUpdate()) {
@@ -54,7 +55,7 @@ public class ParseCustomTemplate {
                         OperationTypeEnum.UPDATE,
                         operationTypeListMap,
                         ArrayList::new
-                ).add(column.getColumnName());
+                ).add(column.getColumn());
             }
 
             for (JsonTable.Column column : jsonTable.getDelete()) {
@@ -62,7 +63,7 @@ public class ParseCustomTemplate {
                         OperationTypeEnum.DELETE,
                         operationTypeListMap,
                         ArrayList::new
-                ).add(column.getColumnName());
+                ).add(column.getColumn());
             }
         }
 

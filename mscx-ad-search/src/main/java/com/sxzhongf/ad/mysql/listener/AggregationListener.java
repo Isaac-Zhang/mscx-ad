@@ -29,8 +29,12 @@ public class AggregationListener implements BinaryLogClient.EventListener {
 
     private Map<String, Ilistener> listenerMap = new HashMap<>();
 
+    private final TemplateHolder templateHolder;
+
     @Autowired
-    private TemplateHolder templateHolder;
+    public AggregationListener(TemplateHolder templateHolder) {
+        this.templateHolder = templateHolder;
+    }
 
     private String genKey(String dbName, String tbName) {
         return dbName + ":" + tbName;
